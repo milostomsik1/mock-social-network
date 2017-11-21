@@ -1,0 +1,74 @@
+@import '~assets/scss/misc';
+@import '~assets/scss/colors';
+@import '~assets/scss/typography';
+
+.item {
+  display: flex;
+  margin: $spacing 0;
+  max-height: 12.5rem;
+
+  background-color: white;
+  border: 1px solid lightgray;
+
+  transition: transform 0.2s;
+
+  &:hover {
+    background-color: deepskyblue;
+    color: white;
+    cursor: pointer;
+  }
+
+  &:active {
+    transition: transform 0.2s;
+    transform: scale(0.95);
+  }
+}
+
+.thumbnail {
+  width: 12.3rem;
+  height: 12.3rem;
+
+  align-self: center;
+
+  background-image: url('https://placeimg.com/123/123/nature?t=1');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.content {
+  display: flex;
+  padding: $spacing / 2;
+
+  flex: 1;
+  flex-wrap: wrap;
+  // justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  width: 100%;
+
+  font-size: $title-size;
+  font-weight: $title-weight;
+}
+
+.property {
+  display: block;
+  margin-right: $spacing;
+
+  font-size: $subtitle-size;
+  font-weight: 500;
+  text-align: center;
+  text-transform: capitalize;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.description {
+  display: block;
+  text-transform: uppercase;
+  font-size: $text-size;
+}

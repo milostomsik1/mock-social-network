@@ -1,0 +1,12 @@
+<input type="text" class="search" placeholder="Search users">
+
+<ul>
+  <app-user-list-item
+    *ngFor="let user of users"
+    [firstName]="user.firstName"
+    [lastName]="user.surname"
+    [gender]="user.gender"
+    [age]="user.age"
+    [friends]="user.friends.length"
+  ></app-user-list-item>
+</ul>

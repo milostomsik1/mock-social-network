@@ -1,0 +1,47 @@
+<div class="thumbnail"></div>
+<h2 class="name">{{name}}</h2>
+
+<hr class="separator">
+
+<div class="details">
+  <span class="property">{{ gender }}
+    <span class="description">Gender</span>
+  </span>
+
+  <span class="property">{{ age }}
+    <span class="description">Age</span>
+  </span>
+</div>
+
+<ul class="friends-list">
+  <h3 class="friends-list__title">Friends</h3>
+  <app-friend-list-item
+    *ngFor="let user of users"
+    [firstName]="user.firstName"
+    [lastName]="user.surname"
+    [friends]="user.friends.length"
+  ></app-friend-list-item>
+</ul>
+
+<ul class="friends-list">
+  <h3 class="friends-list__title">X's Friends</h3>
+  <app-friend-list-item
+  *ngFor="let user of users"
+  [firstName]="user.firstName"
+  [lastName]="user.surname"
+  [friends]="user.friends.length"
+  ></app-friend-list-item>
+</ul>
+
+<ul class="friends-list">
+  <h3 class="friends-list__title">Suggested Friends</h3>
+  <app-friend-list-item
+  *ngFor="let user of users"
+  [firstName]="user.firstName"
+  [lastName]="user.surname"
+  [friends]="user.friends.length"
+  ></app-friend-list-item>
+</ul>
+
+
+

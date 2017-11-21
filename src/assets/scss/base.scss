@@ -1,0 +1,28 @@
+@import './colors';
+@import './typography';
+
+html {
+  font-size: 10px;
+}
+
+body {
+  user-select: none;
+  font-size: $text-size;
+  font-family: 'Raleway', Helvetica, sans-serif
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  color: $primary;
+}
+
+* {
+  box-sizing: border-box;
+  outline: none;
+}
