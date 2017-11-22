@@ -18,16 +18,19 @@
     <h3 class="friends-list__title">Friends</h3>
     <app-friend-list-item
       *ngFor="let user of friendsList"
+      [id]="user.id"
       [firstName]="user.firstName"
       [surname]="user.surname"
       [friends]="user.friends.length"
+      (click)="getFriendsOfFriends(user.id)"
     ></app-friend-list-item>
   </ul>
 
   <ul class="friends-list">
-    <h3 class="friends-list__title">X's Friends</h3>
+    <h3 class="friends-list__title">{{ selectedFriend ? selectedFriend + "'s Friends" : "Click on a friend to display its friends"}}</h3>
     <app-friend-list-item
     *ngFor="let user of friendsOfFriends"
+    [id]="user.id"
     [firstName]="user.firstName"
     [surname]="user.surname"
     [friends]="user.friends.length"
@@ -38,6 +41,7 @@
     <h3 class="friends-list__title">Suggested Friends</h3>
     <app-friend-list-item
     *ngFor="let user of suggestedFriends"
+    [id]="user.id"
     [firstName]="user.firstName"
     [surname]="user.surname"
     [friends]="user.friends.length"

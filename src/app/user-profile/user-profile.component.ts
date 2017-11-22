@@ -19,6 +19,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   private friendsList: object[] = [];
   private friendsOfFriends: object[] = [];
+  private selectedFriend: string;
   private suggestedFriends: object[] = [];
 
   private routeId;
@@ -31,7 +32,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ) {}
 
 
-  private findUserById(id): object {
+  private getUserById(id): object {
     const USER = this._users.filter(user => {
       return user['id'] == id;
     });
@@ -39,7 +40,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   private setUserData(): void {
-    const USER = this.findUserById(this.routeId);
+    const USER = this.getUserById(this.routeId);
 
     this.firstName = USER['firstName'];
     this.surname = USER['surname'];
@@ -54,11 +55,13 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  // private getFriendsOfFriends(users: object[], userId): object[] {
-  //   return users.filter(user => {
-  //     return this.friends.includes(user['id']);
-  //   });
-  // }
+  private getFriendsOfFriends(userId): object[] {
+    const USER = this.getUserById(userId);
+
+    this.friendsOfFriends = this.getFriends(USER['friends']);
+    this.selectedFriend = USER['firstName'];
+    return this.getFriends(USER['friends']);
+  }
 
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(params => {
