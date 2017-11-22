@@ -1,14 +1,19 @@
 @import './colors';
 @import './typography';
 
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
 html {
   font-size: 10px;
 }
 
 body {
-  user-select: none;
+  font-family: 'Raleway', Helvetica, sans-serif;
   font-size: $text-size;
-  font-family: 'Raleway', Helvetica, sans-serif
+  user-select: none;
 }
 
 img {
@@ -17,12 +22,7 @@ img {
 }
 
 a {
-  outline: none;
-  text-decoration: none;
   color: $primary;
-}
-
-* {
-  box-sizing: border-box;
+  text-decoration: none;
   outline: none;
 }

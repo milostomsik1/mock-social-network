@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { User } from './../../_interfaces/user/user';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,8 +7,8 @@ import { Router } from '@angular/router';
   templateUrl: './user-list-item.component.html',
   styleUrls: ['./user-list-item.component.scss']
 })
-export class UserListItemComponent implements OnInit {
-  @Input() user;
+export class UserListItemComponent {
+  @Input() user: User;
 
   constructor(
     private router: Router
@@ -15,8 +16,5 @@ export class UserListItemComponent implements OnInit {
 
   private displayProfile(): void {
     this.router.navigate(['/', this.user.id]);
-  }
-
-  ngOnInit() {
   }
 }

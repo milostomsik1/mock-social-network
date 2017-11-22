@@ -1,3 +1,4 @@
+import { User } from './../_interfaces/user/user';
 import { UsersService } from './../_services/users/users.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -15,16 +16,17 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private gender: string;
   private friends: number[];
 
-  private _users: object[];
+  private _users: User[];
 
-  private friendsList: object[] = [];
-  private friendsOfFriends: object[] = [];
+  private friendsList: User[] = [];
+  private friendsOfFriends: User[] = [];
   private selectedFriend: string;
-  private suggestedFriends: object[] = [];
+  private suggestedFriends: User[] = [];
 
   private userId;
   private routeParamsSubscription: Subscription;
   private usersSubscription: Subscription;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -32,9 +34,9 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ) {}
 
 
-  private getUserById(id): object {
+  private getUserById(id): User {
     const USER = this._users.filter(user => {
-      return user['id'] == id;
+      return user['id'] === id;
     });
     return USER[0];
   }
@@ -49,13 +51,13 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.friends = USER['friends'];
   }
 
-  private getFriends(friendIds: number []): object[] {
+  private getFriends(friendIds: number []): User[] {
     return this._users.filter(user => {
       return friendIds.includes(user['id']);
     });
   }
 
-  private getFriendsOfFriends(userId: number): object[] {
+  private getFriendsOfFriends(userId: number): User[] {
     const USER = this.getUserById(userId);
 
     this.friendsOfFriends = this.getFriends(USER['friends']);
@@ -66,9 +68,9 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     return this.getFriends(USER['friends']);
   }
 
-  private getSuggestedFriends(): object[] {
+  private getSuggestedFriends(): User[] {
     let suggestedFriends = this._users.slice(0);
-    const USER_ID = parseInt(this.userId, 10);
+    const USER_ID = this.userId;
     const USER_AND_FRIENDS = this.friends.concat(USER_ID);
 
     // -- exclude user and his friends from the list of potential suggested friends
@@ -99,7 +101,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(params => {
-      this.userId = params.id;
+      this.userId = parseInt(params.id, 10);
       this.resetFriendSelection();
 
       this.usersSubscription = this.users.data$.subscribe(users => {

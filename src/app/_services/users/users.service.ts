@@ -1,3 +1,4 @@
+import { User } from './../../_interfaces/user/user';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
@@ -6,8 +7,8 @@ import { Http } from '@angular/http';
 @Injectable()
 export class UsersService {
 
-  private _data = new BehaviorSubject([]);
-  public data$: Observable<object[]> = this._data.asObservable();
+  private _data = new BehaviorSubject(<User[]>[]);
+  public data$: Observable<User[]> = this._data.asObservable();
 
   constructor(
     private http: Http
