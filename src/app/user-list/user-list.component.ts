@@ -1,3 +1,4 @@
+import { UsersService } from './../_services/users/users.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,33 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  private users = [
-    {
-      id: 1,
-      firstName: 'Paul',
-      surname: 'Crowe',
-      age: 28,
-      gender: 'male',
-      friends: [
-        2
-      ]
-    },
-    {
-      id: 2,
-      firstName: 'Rob',
-      surname: 'Fitz',
-      age: 23,
-      gender: 'male',
-      friends: [
-        1,
-        3
-      ]
-    }
-  ];
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor(
+    private users: UsersService
+  ) {}
+  ngOnInit() {}
 }

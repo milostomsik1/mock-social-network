@@ -59,3 +59,15 @@
   margin: $spacing 0;
   font-size: $subtitle-size;
 }
+
+.no-profile-selected {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+
+  justify-content: center;
+  align-items: center;
+
+  font-size: $title-size;
+  opacity: 0.3;
+}

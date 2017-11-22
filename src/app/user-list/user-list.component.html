@@ -2,7 +2,7 @@
 
 <ul>
   <app-user-list-item
-    *ngFor="let user of users"
+    *ngFor="let user of (users.users$ | async)"
     [firstName]="user.firstName"
     [lastName]="user.surname"
     [gender]="user.gender"

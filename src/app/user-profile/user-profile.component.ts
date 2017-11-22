@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,94 +12,19 @@ export class UserProfileComponent implements OnInit {
   private gender = 'Male';
   private age = '23';
 
-  private users = [
-    {
-      id: 1,
-      firstName: 'Paul',
-      surname: 'Crowe',
-      age: 28,
-      gender: 'male',
-      friends: [
-        2
-      ]
-    },
-    {
-      id: 1,
-      firstName: 'Paul',
-      surname: 'Crowe',
-      age: 28,
-      gender: 'male',
-      friends: [
-        2
-      ]
-    },
-    {
-      id: 1,
-      firstName: 'Paul',
-      surname: 'Crowe',
-      age: 28,
-      gender: 'male',
-      friends: [
-        2
-      ]
-    },
-    {
-      id: 1,
-      firstName: 'Paul',
-      surname: 'Crowe',
-      age: 28,
-      gender: 'male',
-      friends: [
-        2
-      ]
-    },
-    {
-      id: 1,
-      firstName: 'Paul',
-      surname: 'Crowe',
-      age: 28,
-      gender: 'male',
-      friends: [
-        2
-      ]
-    },
-    {
-      id: 1,
-      firstName: 'Paul',
-      surname: 'Crowe',
-      age: 28,
-      gender: 'male',
-      friends: [
-        2
-      ]
-    },
-    {
-      id: 1,
-      firstName: 'Paul',
-      surname: 'Crowe',
-      age: 28,
-      gender: 'male',
-      friends: [
-        2
-      ]
-    },
-    {
-      id: 2,
-      firstName: 'Rob',
-      surname: 'Fitz',
-      age: 23,
-      gender: 'male',
-      friends: [
-        1,
-        3
-      ]
-    }
-  ];
+  private routeId;
+  private routeParamsSubscription: Subscription;
 
-
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.routeParamsSubscription = this.route.params.subscribe(params => {
+      this.routeId = params.id;
+
+      console.log(params.id);
+    });
   }
 
 }

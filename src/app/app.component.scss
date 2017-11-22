@@ -14,13 +14,14 @@
   height: 100%;
   padding: $spacing;
   min-height: 100vh;
-  width: 42rem;
+  width: 45rem;
   border-right: 1px solid lightgray;
   background-color: #f0f0f0;
+  overflow-y: auto;
 }
 
 .user-profile {
-  margin-left: 42rem;
+  margin-left: 45rem;
   padding: $spacing;
   flex: 1;
   height: 100%;
