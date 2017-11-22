@@ -5,6 +5,11 @@
 .wrapper {
   display: flex;
   min-height: 100vh;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    min-height: 0;
+  }
 }
 
 .user-list {
@@ -17,9 +22,15 @@
   min-height: 100vh;
   width: 45rem;
 
-  background-color: #f0f0f0;
-  border-right: 1px solid lightgray;
+  background-color: rgba($subtitle-color, 0.1);
+  border-right: 1px solid rgba($subtitle-color, 0.15);
   overflow-y: auto;
+
+  @media (max-width: 768px) {
+    position: static;
+    width: 100%;
+    min-height: 0;
+  }
 }
 
 .user-profile {
@@ -29,4 +40,10 @@
   min-height: 100vh;
 
   flex: 1;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    min-height: 0;
+    order: -1;
+  }
 }

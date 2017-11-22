@@ -1,11 +1,11 @@
 <li class="item" (click)="displayProfile(user.id)">
   <div class="thumbnail"></div>
   <div class="content">
-    <h3 class="name">{{ user.firstName }} {{ user.surname }}</h3>
+    <h3 class="name" *ngIf="user.firstName || user.surname">{{ user.firstName }} {{ user.surname }}</h3>
     <span class="property">{{ user.gender }}
       <span class="description">Gender</span>
     </span>
-    <span class="property">{{ user.age }}
+    <span class="property" *ngIf="user.age">{{ user.age }}
       <span class="description">Age</span>
     </span>
     <span class="property">{{ user.friends.length }}

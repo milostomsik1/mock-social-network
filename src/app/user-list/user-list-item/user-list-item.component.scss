@@ -8,19 +8,26 @@
   max-height: 12.5rem;
 
   background-color: white;
-  border: 1px solid lightgray;
+  border: 1px solid rgba($subtitle-color, 0.15);
 
   transition: transform 0.2s;
 
   &:hover {
-    background-color: deepskyblue;
-    color: white;
+    background-color: $primary;
     cursor: pointer;
+  }
+
+  &:hover * {
+    color: white;
   }
 
   &:active {
     transition: transform 0.2s;
     transform: scale(0.95);
+  }
+
+  &:first-child {
+    margin-top: 0;
   }
 }
 
@@ -42,15 +49,13 @@
 
   flex: 1;
   flex-wrap: wrap;
-  // justify-content: space-between;
   align-items: center;
 }
 
 .name {
   width: 100%;
-
   font-size: $title-size;
-  font-weight: $title-weight;
+  font-weight: 300;
 }
 
 .property {
@@ -69,6 +74,9 @@
 
 .description {
   display: block;
+  margin-top: $spacing / 4;
+
+  color: $subtitle-color;
+  font-size: $text-size--small;
   text-transform: uppercase;
-  font-size: $text-size;
 }

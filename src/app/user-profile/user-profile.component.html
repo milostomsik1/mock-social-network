@@ -24,7 +24,7 @@
       [friends]="user.friends.length"
       (click)="getFriendsOfFriends(user.id)"
     ></app-friend-list-item>
-    <p *ngIf="friendsList.length === 0">No friends.</p>
+    <p class="friends-list__no-suggested" *ngIf="friendsList.length === 0">No friends.</p>
   </ul>
 
   <ul class="friends-list">
@@ -47,7 +47,7 @@
     [surname]="user.surname"
     [friends]="user.friends.length"
     ></app-friend-list-item>
-    <p *ngIf="suggestedFriends.length === 0">No suggested friends.</p>
+    <p class="friends-list__no-suggested" *ngIf="suggestedFriends.length === 0">No suggested friends.</p>
   </ul>
 </div>
 

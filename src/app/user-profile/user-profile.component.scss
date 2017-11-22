@@ -17,7 +17,8 @@
 
 .name {
   margin: ($spacing * 2) 0 $spacing;
-  font-size: $title-size;
+  font-size: $headline-size;
+  font-weight: 300;
   text-align: center;
 }
 
@@ -25,11 +26,14 @@
   margin: 0 auto;
   width: 65%;
   min-width: 25rem;
+
+  opacity: 0.35;
 }
 
 .details {
   display: flex;
   width: 75%;
+  max-width: 40rem;
   margin: $spacing auto $spacing;
   justify-content: space-around;
 }
@@ -43,8 +47,11 @@
 
 .description {
   display: block;
+
+  color: $subtitle-color;
+  font-size: $text-size--small;
+  font-weight: 400;
   text-transform: uppercase;
-  font-size: $text-size;
 }
 
 .friends-list {
@@ -60,6 +67,10 @@
   font-size: $subtitle-size;
 }
 
+.friends-list__no-suggested {
+  color: $subtitle-color;
+}
+
 .no-profile-selected {
   display: flex;
   width: 100%;
@@ -68,6 +79,7 @@
   justify-content: center;
   align-items: center;
 
+  color: $subtitle-color;
   font-size: $title-size;
-  opacity: 0.3;
+  font-weight: 300;
 }

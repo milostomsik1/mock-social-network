@@ -11,6 +11,7 @@ html {
 }
 
 body {
+  color: $text-color;
   font-family: 'Raleway', Helvetica, sans-serif;
   font-size: $text-size;
   user-select: none;
@@ -22,7 +23,7 @@ img {
 }
 
 a {
-  color: $primary;
+  color: $text-color;
   text-decoration: none;
   outline: none;
 }
