@@ -16,16 +16,16 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private gender: string;
   private friends: number[];
 
+  private routeParamsSubscription: Subscription;
+  private userId;
+
+  private usersSubscription: Subscription;
   private _users: User[];
 
   private friendsList: User[] = [];
-  private friendsOfFriends: User[] = [];
   private selectedFriend: string;
+  private friendsOfFriends: User[] = [];
   private suggestedFriends: User[] = [];
-
-  private userId;
-  private routeParamsSubscription: Subscription;
-  private usersSubscription: Subscription;
 
 
   constructor(
