@@ -1,4 +1,4 @@
-<div class="user-profile" *ngIf="routeId">
+<div class="user-profile" *ngIf="userId">
   <div class="thumbnail"></div>
   <h2 class="name">{{firstName}} {{surname}}</h2>
 
@@ -24,6 +24,7 @@
       [friends]="user.friends.length"
       (click)="getFriendsOfFriends(user.id)"
     ></app-friend-list-item>
+    <p *ngIf="friendsList.length === 0">No friends.</p>
   </ul>
 
   <ul class="friends-list">
@@ -46,9 +47,10 @@
     [surname]="user.surname"
     [friends]="user.friends.length"
     ></app-friend-list-item>
+    <p *ngIf="suggestedFriends.length === 0">No suggested friends.</p>
   </ul>
 </div>
 
-<div class="no-profile-selected" *ngIf="!routeId">
+<div class="no-profile-selected" *ngIf="!userId">
   NO PROFILE SELECTED
 </div>

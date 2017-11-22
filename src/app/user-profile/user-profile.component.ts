@@ -22,7 +22,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private selectedFriend: string;
   private suggestedFriends: object[] = [];
 
-  private routeId;
+  private userId;
   private routeParamsSubscription: Subscription;
   private usersSubscription: Subscription;
 
@@ -40,7 +40,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   private setUserData(): void {
-    const USER = this.getUserById(this.routeId);
+    const USER = this.getUserById(this.userId);
 
     this.firstName = USER['firstName'];
     this.surname = USER['surname'];
@@ -66,22 +66,48 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     return this.getFriends(USER['friends']);
   }
 
-  private getSuggestedFriends(): void {
-    // Suggested friends: people in the group
-    // who know 2 or more direct friends of the
-    // chosen user but are not directly connected
-    // to the chosen user;
+  private getSuggestedFriends(): object[] {
+    let suggestedFriends = this._users.slice(0);
+    const USER_ID = parseInt(this.userId, 10);
+    const USER_AND_FRIENDS = this.friends.concat(USER_ID);
+
+    // -- exclude user and his friends from the list of potential suggested friends
+    suggestedFriends = suggestedFriends.filter(friend => {
+      return !USER_AND_FRIENDS.includes(friend['id']);
+    });
+
+    // -- for all suggested friends, if a friend of suggested friend is users direct friend increase counter
+    // -- if there are two common friends keep the entry, otherwise reject
+    // -- simplified, checks if potential friend knows at least 2 direct friends
+    suggestedFriends = suggestedFriends.filter(suggestedFriend => {
+      let commonFriends = 0;
+
+      suggestedFriend['friends'].forEach(friend => {
+        if (this.friends.includes(friend)) {
+          commonFriends++;
+        }
+      });
+      return commonFriends >= 2 ? true : false;
+    });
+    return suggestedFriends;
+  }
+
+  private resetFriendSelection(): void {
+    this.friendsOfFriends = null;
+    this.selectedFriend = null;
   }
 
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(params => {
-      this.routeId = params.id;
-      this.usersSubscription = this.users.data$
-      .subscribe(users => {
+      this.userId = params.id;
+      this.resetFriendSelection();
+
+      this.usersSubscription = this.users.data$.subscribe(users => {
         this._users = users;
-        if (this.routeId && users.length > 0) {
+        if (this.userId && users.length > 0) {
           this.setUserData();
           this.friendsList = this.getFriends(this.friends);
+          this.suggestedFriends = this.getSuggestedFriends();
         }
       });
     });
