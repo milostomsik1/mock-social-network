@@ -1,14 +1,14 @@
-<li class="item">
+<li class="item" (click)="displayProfile(user.id)">
   <div class="thumbnail"></div>
   <div class="content">
-    <h3 class="name">{{ firstName }} {{ lastName }}</h3>
-    <span class="property">{{ gender }}
+    <h3 class="name">{{ user.firstName }} {{ user.surname }}</h3>
+    <span class="property">{{ user.gender }}
       <span class="description">Gender</span>
     </span>
-    <span class="property">{{ age }}
+    <span class="property">{{ user.age }}
       <span class="description">Age</span>
     </span>
-    <span class="property">{{ friends }}
+    <span class="property">{{ user.friends.length }}
       <span class="description">Friends</span>
     </span>
   </div>

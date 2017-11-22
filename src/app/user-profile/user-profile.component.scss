@@ -63,7 +63,7 @@
 .no-profile-selected {
   display: flex;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - #{$spacing * 2});
 
   justify-content: center;
   align-items: center;

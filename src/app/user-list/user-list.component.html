@@ -2,11 +2,7 @@
 
 <ul>
   <app-user-list-item
-    *ngFor="let user of (users.users$ | async)"
-    [firstName]="user.firstName"
-    [lastName]="user.surname"
-    [gender]="user.gender"
-    [age]="user.age"
-    [friends]="user.friends.length"
+    *ngFor="let user of (users.data$ | async)"
+    [user]="user"
   ></app-user-list-item>
 </ul>

@@ -1,26 +1,26 @@
 <div class="user-profile" *ngIf="routeId">
   <div class="thumbnail"></div>
-  <h2 class="name">{{name}}</h2>
+  <h2 class="name">{{firstName}} {{surname}}</h2>
 
   <hr class="separator">
 
   <div class="details">
-    <span class="property">{{ gender }}
+    <span class="property" *ngIf="gender">{{ gender }}
       <span class="description">Gender</span>
     </span>
 
-    <span class="property">{{ age }}
+    <span class="property" *ngIf="age">{{ age }}
       <span class="description">Age</span>
     </span>
   </div>
 
-  <ul class="friends-list">
+  <!-- <ul class="friends-list">
     <h3 class="friends-list__title">Friends</h3>
     <app-friend-list-item
       *ngFor="let user of users"
-      [firstName]="user.firstName"
-      [lastName]="user.surname"
-      [friends]="user.friends.length"
+      [firstName]="firstName"
+      [lastName]="surname"
+      [friends]="friends.length"
     ></app-friend-list-item>
   </ul>
 
@@ -28,9 +28,9 @@
     <h3 class="friends-list__title">X's Friends</h3>
     <app-friend-list-item
     *ngFor="let user of users"
-    [firstName]="user.firstName"
-    [lastName]="user.surname"
-    [friends]="user.friends.length"
+    [firstName]="firstName"
+    [lastName]="surname"
+    [friends]="friends.length"
     ></app-friend-list-item>
   </ul>
 
@@ -38,11 +38,11 @@
     <h3 class="friends-list__title">Suggested Friends</h3>
     <app-friend-list-item
     *ngFor="let user of users"
-    [firstName]="user.firstName"
-    [lastName]="user.surname"
-    [friends]="user.friends.length"
+    [firstName]="firstName"
+    [lastName]="surname"
+    [friends]="friends.length"
     ></app-friend-list-item>
-  </ul>
+  </ul> -->
 </div>
 
 <div class="no-profile-selected" *ngIf="!routeId">

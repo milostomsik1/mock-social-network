@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list-item',
@@ -6,14 +7,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./user-list-item.component.scss']
 })
 export class UserListItemComponent implements OnInit {
-  @Input() firstName: string;
-  @Input() lastName: string;
-  @Input() age: string;
-  @Input() gender: string;
-  @Input() friends: string;
-  constructor() { }
+  @Input() user;
+
+  constructor(
+    private router: Router
+  ) {}
+
+  private displayProfile(): void {
+    this.router.navigate(['/', this.user.id]);
+  }
 
   ngOnInit() {
   }
-
 }

@@ -6,8 +6,8 @@ import { Http } from '@angular/http';
 @Injectable()
 export class UsersService {
 
-  private _users = new BehaviorSubject([]);
-  public users$ = this._users.asObservable();
+  private _data = new BehaviorSubject([]);
+  public data$: Observable<object[]> = this._data.asObservable();
 
   constructor(
     private http: Http
@@ -21,8 +21,7 @@ export class UsersService {
       users => {
         // -- fake BE delay
         setTimeout(() => {
-          this._users.next(users.json());
-          console.log(users.json());
+          this._data.next(users.json());
         }, 1000);
       },
       err => {
