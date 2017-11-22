@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-friend-list-item',
@@ -11,13 +11,7 @@ export class FriendListItemComponent implements OnInit {
   @Input() surname: string;
   @Input() friends: string;
 
-  @Output() onClick = new EventEmitter();
-
   constructor() { }
-
-  private clicked(): void {
-    this.onClick.emit(this.id);
-  }
 
   ngOnInit() {
   }

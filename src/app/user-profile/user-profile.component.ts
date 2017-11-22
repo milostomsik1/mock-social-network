@@ -49,18 +49,28 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.friends = USER['friends'];
   }
 
-  private getFriends(friendIds): object[] {
+  private getFriends(friendIds: number []): object[] {
     return this._users.filter(user => {
       return friendIds.includes(user['id']);
     });
   }
 
-  private getFriendsOfFriends(userId): object[] {
+  private getFriendsOfFriends(userId: number): object[] {
     const USER = this.getUserById(userId);
 
     this.friendsOfFriends = this.getFriends(USER['friends']);
+    this.friendsOfFriends = this.friendsOfFriends.filter(friend => {
+      return !this.friends.includes(friend['id']);
+    });
     this.selectedFriend = USER['firstName'];
     return this.getFriends(USER['friends']);
+  }
+
+  private getSuggestedFriends(): void {
+    // Suggested friends: people in the group
+    // who know 2 or more direct friends of the
+    // chosen user but are not directly connected
+    // to the chosen user;
   }
 
   ngOnInit() {
@@ -72,7 +82,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         if (this.routeId && users.length > 0) {
           this.setUserData();
           this.friendsList = this.getFriends(this.friends);
-          console.log('friends list', this.getFriends(this.friends));
         }
       });
     });

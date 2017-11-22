@@ -27,7 +27,7 @@
   </ul>
 
   <ul class="friends-list">
-    <h3 class="friends-list__title">{{ selectedFriend ? selectedFriend + "'s Friends" : "Click on a friend to display its friends"}}</h3>
+    <h3 class="friends-list__title">{{ selectedFriend ? selectedFriend + "'s Friends (excluding own friends)" : "Click on a friend to display its friends"}}</h3>
     <app-friend-list-item
     *ngFor="let user of friendsOfFriends"
     [id]="user.id"
