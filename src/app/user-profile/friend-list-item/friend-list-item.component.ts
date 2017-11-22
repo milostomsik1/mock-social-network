@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FriendListItemComponent implements OnInit {
   @Input() firstName: string;
-  @Input() lastName: string;
+  @Input() surname: string;
   @Input() friends: string;
 
   constructor() { }

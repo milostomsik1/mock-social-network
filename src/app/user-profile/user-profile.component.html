@@ -14,35 +14,35 @@
     </span>
   </div>
 
-  <!-- <ul class="friends-list">
+  <ul class="friends-list">
     <h3 class="friends-list__title">Friends</h3>
     <app-friend-list-item
-      *ngFor="let user of users"
-      [firstName]="firstName"
-      [lastName]="surname"
-      [friends]="friends.length"
+      *ngFor="let user of friendsList"
+      [firstName]="user.firstName"
+      [surname]="user.surname"
+      [friends]="user.friends.length"
     ></app-friend-list-item>
   </ul>
 
   <ul class="friends-list">
     <h3 class="friends-list__title">X's Friends</h3>
     <app-friend-list-item
-    *ngFor="let user of users"
-    [firstName]="firstName"
-    [lastName]="surname"
-    [friends]="friends.length"
+    *ngFor="let user of friendsOfFriends"
+    [firstName]="user.firstName"
+    [surname]="user.surname"
+    [friends]="user.friends.length"
     ></app-friend-list-item>
   </ul>
 
   <ul class="friends-list">
     <h3 class="friends-list__title">Suggested Friends</h3>
     <app-friend-list-item
-    *ngFor="let user of users"
-    [firstName]="firstName"
-    [lastName]="surname"
-    [friends]="friends.length"
+    *ngFor="let user of suggestedFriends"
+    [firstName]="user.firstName"
+    [surname]="user.surname"
+    [friends]="user.friends.length"
     ></app-friend-list-item>
-  </ul> -->
+  </ul>
 </div>
 
 <div class="no-profile-selected" *ngIf="!routeId">

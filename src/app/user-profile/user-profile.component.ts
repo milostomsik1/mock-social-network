@@ -15,6 +15,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private gender: string;
   private friends: number[];
 
+  private friendsList: object[] = [];
+  private friendsOfFriends: object[] = [];
+  private suggestedFriends: object[] = [];
+
   private routeId;
   private routeParamsSubscription: Subscription;
   private usersSubscription: Subscription;
@@ -24,21 +28,39 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     private users: UsersService
   ) {}
 
+
+  private findUser(users: object[]): object {
+    const USER = users.filter(user => {
+      return user['id'] == this.routeId;
+    });
+    return USER[0];
+  }
+
+  private setUserData(users: object[]): void {
+    const USER = this.findUser(users);
+
+    this.firstName = USER['firstName'];
+    this.surname = USER['surname'];
+    this.age = USER['age'];
+    this.gender = USER['gender'];
+    this.friends = USER['friends'];
+  }
+
+  private getFriends(users: object[]): object[] {
+    return users.filter(user => {
+      return this.friends.includes(user['id']);
+    });
+  }
+
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(params => {
       this.routeId = params.id;
       this.usersSubscription = this.users.data$
       .subscribe(users => {
         if (this.routeId && users.length > 0) {
-          const USER = users.filter(user => {
-            return user['id'] == this.routeId;
-          });
-
-          this.firstName = USER[0]['firstName'];
-          this.surname = USER[0]['surname'];
-          this.age = USER[0]['age'];
-          this.gender = USER[0]['gender'];
-          this.friends = USER[0]['friends'];
+          this.setUserData(users);
+          this.friendsList = this.getFriends(users);
+          console.log('friends list', this.getFriends(users));
         }
       });
     });
