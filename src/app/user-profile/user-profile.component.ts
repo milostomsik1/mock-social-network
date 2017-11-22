@@ -15,6 +15,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private gender: string;
   private friends: number[];
 
+  private _users: object[];
+
   private friendsList: object[] = [];
   private friendsOfFriends: object[] = [];
   private suggestedFriends: object[] = [];
@@ -29,15 +31,15 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ) {}
 
 
-  private findUser(users: object[]): object {
-    const USER = users.filter(user => {
-      return user['id'] == this.routeId;
+  private findUserById(id): object {
+    const USER = this._users.filter(user => {
+      return user['id'] == id;
     });
     return USER[0];
   }
 
-  private setUserData(users: object[]): void {
-    const USER = this.findUser(users);
+  private setUserData(): void {
+    const USER = this.findUserById(this.routeId);
 
     this.firstName = USER['firstName'];
     this.surname = USER['surname'];
@@ -46,21 +48,28 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.friends = USER['friends'];
   }
 
-  private getFriends(users: object[]): object[] {
-    return users.filter(user => {
-      return this.friends.includes(user['id']);
+  private getFriends(friendIds): object[] {
+    return this._users.filter(user => {
+      return friendIds.includes(user['id']);
     });
   }
+
+  // private getFriendsOfFriends(users: object[], userId): object[] {
+  //   return users.filter(user => {
+  //     return this.friends.includes(user['id']);
+  //   });
+  // }
 
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(params => {
       this.routeId = params.id;
       this.usersSubscription = this.users.data$
       .subscribe(users => {
+        this._users = users;
         if (this.routeId && users.length > 0) {
-          this.setUserData(users);
-          this.friendsList = this.getFriends(users);
-          console.log('friends list', this.getFriends(users));
+          this.setUserData();
+          this.friendsList = this.getFriends(this.friends);
+          console.log('friends list', this.getFriends(this.friends));
         }
       });
     });
