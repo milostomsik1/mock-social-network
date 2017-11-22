@@ -82,4 +82,8 @@
   color: $subtitle-color;
   font-size: $title-size;
   font-weight: 300;
+
+  @media (max-width: 768px) {
+    min-height: 0;
+  }
 }
