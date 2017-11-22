@@ -14,7 +14,7 @@ export class UserListItemComponent {
     private router: Router
   ) {}
 
-  private displayProfile(): void {
+  public displayProfile(): void {
     this.router.navigate(['/', this.user.id]);
   }
 }

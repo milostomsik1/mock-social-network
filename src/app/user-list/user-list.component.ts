@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 })
 export class UserListComponent {
   constructor(
-    private users: UsersService
+    public users: UsersService
   ) {}
 }

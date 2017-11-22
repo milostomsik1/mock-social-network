@@ -17,7 +17,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private friends: number[];
 
   private routeParamsSubscription: Subscription;
-  private userId;
+  public userId;
 
   private usersSubscription: Subscription;
   private _users: User[];
